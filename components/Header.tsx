@@ -1,7 +1,20 @@
+"use client";
+
 import { Bell, Search, ChevronDown } from "lucide-react";
 import Image from "next/image";
+import { useState, useEffect } from "react";
 
 export default function Header() {
+  const [isMobile, setIsMobile] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   return (
     <header style={styles.header}>
       {/* Left */}
@@ -13,18 +26,44 @@ export default function Header() {
       </div>
 
       {/* Center */}
-      <div style={styles.searchWrapper}>
-        <input placeholder="Search for anything" style={styles.searchInput} />
-        <button style={styles.searchBtn}>
-          <Search size={18} color="#fff" />
-        </button>
-      </div>
+      {isMobile ? (
+        showSearch ? (
+          <div style={styles.mobileSearchWrapper}>
+            <input
+              placeholder="Search for anything"
+              style={styles.searchInput}
+            />
+            <button
+              style={styles.searchBtn}
+              onClick={() => setShowSearch(false)}
+            >
+              <Search size={18} color="#fff" />
+            </button>
+          </div>
+        ) : (
+          <button
+            style={styles.mobileSearchBtn}
+            onClick={() => setShowSearch(true)}
+          >
+            <Search size={18} color="#213F7D" />
+          </button>
+        )
+      ) : (
+        <div style={styles.searchWrapper}>
+          <input placeholder="Search for anything" style={styles.searchInput} />
+          <button style={styles.searchBtn}>
+            <Search size={18} color="#fff" />
+          </button>
+        </div>
+      )}
 
       {/* Right */}
       <div style={styles.right}>
-        <a href="#" style={styles.docs}>
-          Docs
-        </a>
+        {!isMobile && (
+          <a href="#" style={styles.docs}>
+            Docs
+          </a>
+        )}
         <button style={styles.iconBtn}>
           <Bell color="#213F7D" size={18} />
         </button>
@@ -33,12 +72,12 @@ export default function Header() {
           <Image
             src="/avatar.png"
             alt="user"
-            width={36}
-            height={36}
+            width={isMobile ? 32 : 36}
+            height={isMobile ? 32 : 36}
             style={styles.avatar}
           />
-          <span style={styles.username}>Adedeji</span>
-          <ChevronDown size={14} color="#213F7D" />
+          {!isMobile && <span style={styles.username}>Adedeji</span>}
+          {!isMobile && <ChevronDown size={14} color="#213F7D" />}
         </div>
       </div>
     </header>
@@ -50,7 +89,7 @@ const styles: { [k: string]: React.CSSProperties } = {
     height: 90,
     display: "flex",
     alignItems: "center",
-    padding: "0 40px",
+    padding: "0 clamp(16px, 4vw, 40px)",
     background: "#fff",
     position: "fixed",
     top: 0,
@@ -64,14 +103,14 @@ const styles: { [k: string]: React.CSSProperties } = {
   left: {
     display: "flex",
     alignItems: "center",
-    marginRight: 60,
+    flex: "0 0 auto",
   },
 
   logo: {
     display: "flex",
     alignItems: "center",
-    gap: 8,
-    fontSize: 22,
+    gap: "clamp(4px, 1vw, 8px)",
+    fontSize: "clamp(18px, 2.5vw, 22px)",
     fontWeight: 700,
     color: "#213F7D",
   },
@@ -86,48 +125,51 @@ const styles: { [k: string]: React.CSSProperties } = {
   },
 
   searchWrapper: {
-    flex: 1,
-    maxWidth: 400,
+    flex: "1 1 auto",
+    maxWidth: "400px",
     display: "flex",
     alignItems: "center",
+    margin: "0 clamp(8px, 2vw, 20px)",
   },
 
   searchInput: {
     flex: 1,
-    height: 40,
-    padding: "0 14px",
+    height: "clamp(36px, 4vw, 40px)",
+    padding: "0 clamp(8px, 1.5vw, 14px)",
     border: "1px solid #D1D5DB",
     borderRight: "none",
     borderRadius: "8px 0 0 8px",
     outline: "none",
-    fontSize: 14,
+    fontSize: "clamp(12px, 1.5vw, 14px)",
     background: "transparent",
     color: "#545F7D",
   },
 
   searchBtn: {
-    height: 40,
-    width: 50,
+    height: "clamp(36px, 4vw, 40px)",
+    width: "clamp(40px, 5vw, 50px)",
     background: "#39CDCC",
     border: "none",
     borderRadius: "0 8px 8px 0",
     cursor: "pointer",
-    fontSize: 16,
+    fontSize: "clamp(14px, 1.8vw, 16px)",
     color: "#fff",
   },
 
   right: {
     display: "flex",
     alignItems: "center",
-    gap: 34,
-    marginLeft: "30%",
+    gap: "clamp(8px, 2vw, 20px)",
+    flex: "0 0 auto",
+    minWidth: "fit-content",
   },
 
   docs: {
-    fontSize: 14,
+    fontSize: "clamp(12px, 1.5vw, 14px)",
     color: "#213F7D",
     textDecoration: "underline",
     fontWeight: 500,
+    whiteSpace: "nowrap",
   },
 
   iconBtn: {
@@ -140,7 +182,7 @@ const styles: { [k: string]: React.CSSProperties } = {
   profile: {
     display: "flex",
     alignItems: "center",
-    gap: 8,
+    gap: "clamp(4px, 1vw, 8px)",
     cursor: "pointer",
   },
 
@@ -152,13 +194,35 @@ const styles: { [k: string]: React.CSSProperties } = {
   },
 
   username: {
-    fontSize: 14,
+    fontSize: "clamp(12px, 1.5vw, 14px)",
     fontWeight: 500,
     color: "#213F7D",
+    whiteSpace: "nowrap",
   },
 
   caret: {
     fontSize: 12,
     color: "#213F7D",
+  },
+
+  mobileSearchBtn: {
+    background: "transparent",
+    border: "none",
+    cursor: "pointer",
+    padding: 8,
+  },
+
+  mobileSearchWrapper: {
+    position: "absolute",
+    top: "100%",
+    left: 16,
+    right: 16,
+    background: "#fff",
+    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+    borderRadius: 8,
+    padding: 16,
+    display: "flex",
+    alignItems: "center",
+    zIndex: 1001,
   },
 };

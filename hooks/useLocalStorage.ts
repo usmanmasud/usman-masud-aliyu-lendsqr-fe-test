@@ -1,8 +1,8 @@
-export function setItem<T>(key: string, value: T) {
+export const setStorage = <T>(key: string, value: T) => {
   localStorage.setItem(key, JSON.stringify(value));
-}
+};
 
-export function getItem<T>(key: string): T | null {
+export const getStorage = <T>(key: string): T | null => {
   const item = localStorage.getItem(key);
   return item ? JSON.parse(item) : null;
-}
+};

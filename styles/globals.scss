@@ -6,6 +6,17 @@
 
 body {
   margin: 0;
-  font-family: "Work Sans", sans-serif;
+  font-family: $font;
   background: $bg;
+  color: $text-light;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
 }

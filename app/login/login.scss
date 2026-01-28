@@ -1,0 +1,122 @@
+.login {
+  display: flex;
+  min-height: 100vh;
+  background: #ffffff;
+  font-family: "Arial", sans-serif;
+
+  &__left {
+    flex: 1;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    img {
+      max-width: 100%;
+      height: auto;
+      margin: auto;
+      margin-right: 10px;
+    }
+  }
+
+  &__logo {
+    font-size: 32px;
+    font-weight: 700;
+    color: #213f7d;
+  }
+
+  &__right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__card {
+    width: 100%;
+    max-width: 420px;
+
+    h1 {
+      font-size: 40px;
+      color: #213f7d;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #545f7d;
+      font-weight: 100;
+      margin-bottom: 40px;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #dcdcdc;
+      border-radius: 5px;
+      margin-bottom: 24px;
+      font-size: 14px;
+      background: transparent;
+      color: #213f7d;
+
+      &:focus {
+        outline: none;
+        border-color: #39cdcc;
+      }
+    }
+
+    .password {
+      position: relative;
+
+      span {
+        position: absolute;
+        right: 16px;
+        top: 30%;
+        transform: translateY(-50%);
+        color: #39cdcc;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        margin-bottom: 24px;
+      }
+    }
+
+    .forgot {
+      display: inline-block;
+      margin-bottom: 30px;
+      font-size: 12px;
+      color: #39cdcc;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      background: #39cdcc;
+      border: none;
+      border-radius: 8px;
+      color: #ffffff;
+      font-weight: 600;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+  }
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .login {
+    flex-direction: column;
+
+    &__left {
+      display: none;
+    }
+
+    &__right {
+      padding: 40px 20px;
+    }
+  }
+}

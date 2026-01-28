@@ -6,4 +6,6 @@ export interface User {
   phoneNumber: string;
   dateJoined: string;
   status: "Active" | "Inactive" | "Pending" | "Blacklisted";
+  hasLoan: boolean;
+  hasSavings: boolean;
 }

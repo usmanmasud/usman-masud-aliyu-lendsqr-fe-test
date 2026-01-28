@@ -11,7 +11,7 @@ export default function LoginPage() {
 
   const handleLogin = () => {
     localStorage.setItem("auth", "true");
-    router.push("/dashboard");
+    router.push("/dashboard/users");
   };
 
   return (

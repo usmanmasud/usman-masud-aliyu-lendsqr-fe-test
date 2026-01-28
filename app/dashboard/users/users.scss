@@ -1,0 +1,104 @@
+.users-page {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  padding: 30px;
+}
+
+.user-text {
+  color: #213f7d;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+/* ===== STATS ===== */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 26px;
+}
+
+/* ===== TABLE ===== */
+.table-wrapper {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th {
+    text-align: left;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #545f7d;
+    padding: 15px 10px;
+  }
+
+  td {
+    padding: 15px 10px;
+    color: #545f7d;
+    font-size: 14px;
+  }
+
+  tr {
+    border-bottom: 1px solid #e5e9f2;
+    cursor: pointer;
+
+    &:hover {
+      background: #f9fafc;
+    }
+  }
+}
+
+/* ===== STATUS ===== */
+.status {
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 500;
+
+  &.active {
+    background: #e6f9f0;
+    color: #39cd62;
+  }
+
+  &.inactive {
+    background: #f5f5f7;
+    color: #545f7d;
+  }
+
+  &.pending {
+    background: #fdf7e5;
+    color: #e9b200;
+  }
+
+  &.blacklisted {
+    background: #fde6eb;
+    color: #e4033b;
+  }
+}
+
+/* ===== PAGINATION ===== */
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 20px;
+
+  button {
+    padding: 6px 14px;
+    border-radius: 4px;
+    border: 1px solid #dcdfe8;
+    background: #fff;
+    cursor: pointer;
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+  }
+}

@@ -20,7 +20,13 @@ import {
   ClipboardList,
   Home,
   ChevronDown,
+  X,
 } from "lucide-react";
+
+interface SidebarProps {
+  isOpen?: boolean;
+  onClose?: () => void;
+}
 
 const menu = [
   {
@@ -58,11 +64,17 @@ const menu = [
   },
 ];
 
-export default function Sidebar() {
+export default function Sidebar({ isOpen = true, onClose }: SidebarProps) {
   const pathname = usePathname();
 
   return (
-    <aside className={styles.sidebar}>
+    <aside className={`${styles.sidebar} ${isOpen ? styles.open : ''}`}>
+      <div className={styles.mobileHeader}>
+        <button className={styles.closeBtn} onClick={onClose}>
+          <X size={20} />
+        </button>
+      </div>
+      
       {/* Switch Organization */}
       <div className={styles.switchOrg}>
         <Briefcase size={16} />

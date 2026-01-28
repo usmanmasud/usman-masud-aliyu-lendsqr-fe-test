@@ -1,10 +1,14 @@
 "use client";
 
-import { Bell, Search, ChevronDown } from "lucide-react";
+import { Bell, Search, ChevronDown, Menu } from "lucide-react";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 
-export default function Header() {
+interface HeaderProps {
+  onMenuToggle?: () => void;
+}
+
+export default function Header({ onMenuToggle }: HeaderProps) {
   const [isMobile, setIsMobile] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
 
@@ -19,6 +23,11 @@ export default function Header() {
     <header style={styles.header}>
       {/* Left */}
       <div style={styles.left}>
+        {isMobile && (
+          <button style={styles.menuBtn} onClick={onMenuToggle}>
+            <Menu size={20} color="#213F7D" />
+          </button>
+        )}
         <div style={styles.logo}>
           <Image src="/Union.png" alt="Lendsqr" width={24} height={24} />
           <span>lendsqr</span>
@@ -203,6 +212,14 @@ const styles: { [k: string]: React.CSSProperties } = {
   caret: {
     fontSize: 12,
     color: "#213F7D",
+  },
+
+  menuBtn: {
+    background: "transparent",
+    border: "none",
+    cursor: "pointer",
+    padding: 8,
+    marginRight: 8,
   },
 
   mobileSearchBtn: {

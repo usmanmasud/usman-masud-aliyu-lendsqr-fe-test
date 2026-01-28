@@ -9,29 +9,74 @@ import "./users.scss";
 import StatsCard from "@/components/StatsCard";
 import TableHeader from "@/components/TableHeader";
 import { Coins, Users, Wallet2, MoreVertical } from "lucide-react";
+import UserActions from "@/components/UserActions";
 
 const PAGE_SIZE = 10;
 
 export default function UsersPage() {
   const [users, setUsers] = useState<User[]>([]);
+  const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
   const [page, setPage] = useState(1);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [openActionId, setOpenActionId] = useState<string>("");
+  const [filters, setFilters] = useState({
+    organization: "",
+    username: "",
+    email: "",
+    phoneNumber: "",
+    dateJoined: "",
+    status: ""
+  });
   const router = useRouter();
 
   useEffect(() => {
-    fetchUsers().then(setUsers);
+    fetchUsers().then((data) => {
+      setUsers(data);
+    });
   }, []);
 
+  const computeFilteredUsers = () => {
+    let filtered = users;
+    
+    Object.entries(filters).forEach(([key, value]) => {
+      if (value) {
+        filtered = filtered.filter((user: User) => {
+          const userValue = user[key as keyof User]?.toString().toLowerCase() || "";
+          return userValue.includes(value.toLowerCase());
+        });
+      }
+    });
+    
+    return filtered;
+  };
+
+  const filteredUsersComputed = computeFilteredUsers();
+
+  const handleFilter = (newFilters: typeof filters) => {
+    setFilters(newFilters);
+  };
+
+  const toggleFilter = () => {
+    setIsFilterOpen(!isFilterOpen);
+    setOpenActionId(""); // Close any open action menu
+  };
+
+  const handleActionToggle = (userId: string) => {
+    setOpenActionId(openActionId === userId ? "" : userId);
+    if (isFilterOpen) setIsFilterOpen(false); // Close filter if open
+  };
+
   const start = (page - 1) * PAGE_SIZE;
-  const paginated = users.slice(start, start + PAGE_SIZE);
+  const paginated = filteredUsersComputed.slice(start, start + PAGE_SIZE);
 
   const viewUser = (user: User) => {
     setStorage("selectedUser", user);
     router.push(`/dashboard/users/${user.id}`);
   };
 
-  const activeUsers = users.filter((u) => u.status === "Active").length;
-  const usersWithLoans = users.filter((u) => u.hasLoan).length;
-  const usersWithSavings = users.filter((u) => u.hasSavings).length;
+  const activeUsers = filteredUsersComputed.filter((u) => u.status === "Active").length;
+  const usersWithLoans = filteredUsersComputed.filter((u) => u.hasLoan).length;
+  const usersWithSavings = filteredUsersComputed.filter((u) => u.hasSavings).length;
 
   return (
     <div className="users-page">
@@ -65,22 +110,52 @@ export default function UsersPage() {
           <thead>
             <tr>
               <th>
-                <TableHeader title="Organization" />
+                <TableHeader 
+                  title="Organization" 
+                  onFilter={handleFilter}
+                  isFilterOpen={isFilterOpen}
+                  onToggleFilter={toggleFilter}
+                />
               </th>
               <th>
-                <TableHeader title="Username" />
+                <TableHeader 
+                  title="Username" 
+                  onFilter={handleFilter}
+                  isFilterOpen={isFilterOpen}
+                  onToggleFilter={toggleFilter}
+                />
               </th>
               <th>
-                <TableHeader title="Email" />
+                <TableHeader 
+                  title="Email" 
+                  onFilter={handleFilter}
+                  isFilterOpen={isFilterOpen}
+                  onToggleFilter={toggleFilter}
+                />
               </th>
               <th>
-                <TableHeader title="Phone" />
+                <TableHeader 
+                  title="Phone" 
+                  onFilter={handleFilter}
+                  isFilterOpen={isFilterOpen}
+                  onToggleFilter={toggleFilter}
+                />
               </th>
               <th>
-                <TableHeader title="Date Joined" />
+                <TableHeader 
+                  title="Date Joined" 
+                  onFilter={handleFilter}
+                  isFilterOpen={isFilterOpen}
+                  onToggleFilter={toggleFilter}
+                />
               </th>
               <th>
-                <TableHeader title="Status" />
+                <TableHeader 
+                  title="Status" 
+                  onFilter={handleFilter}
+                  isFilterOpen={isFilterOpen}
+                  onToggleFilter={toggleFilter}
+                />
               </th>
               <th></th>
             </tr>
@@ -100,7 +175,11 @@ export default function UsersPage() {
                   </span>
                 </td>
                 <td>
-                  <MoreVertical size={16} />
+                  <UserActions 
+                    user={user} 
+                    isOpen={openActionId === user.id}
+                    onToggle={handleActionToggle}
+                  />
                 </td>
               </tr>
             ))}
@@ -117,7 +196,7 @@ export default function UsersPage() {
             <option>50</option>
             <option>20</option>
           </select>
-          out of {users.length}
+          out of {filteredUsersComputed.length}
         </div>
 
         <div className="pagination-right">
@@ -146,7 +225,7 @@ export default function UsersPage() {
 
           <button
             className="nav"
-            disabled={start + PAGE_SIZE >= users.length}
+            disabled={start + PAGE_SIZE >= filteredUsers.length}
             onClick={() => setPage(page + 1)}
           >
             ›

@@ -1,0 +1,31 @@
+.app {
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  color: #111827;
+  background: #FBFBFB;
+  min-height: 100vh;
+}
+
+.content {
+  margin-top: 90px;
+  margin-left: 283px;
+  padding: 20px;
+  min-height: calc(100vh - 90px);
+  transition: margin-left 0.3s ease;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+@media (max-width: 768px) {
+  .content {
+    margin-left: 0;
+    padding: 16px;
+  }
+}

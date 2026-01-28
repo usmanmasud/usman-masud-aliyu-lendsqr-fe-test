@@ -1,41 +1,26 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Sidebar from "../../components/Sidebar";
 import Header from "../../components/Header";
 import Navbar from "../../components/Navbar";
-
-export const metadata = {
-  title: "Dashboard",
-  description: "Dashboard layout",
-};
+import styles from "./dashboard.module.scss";
 
 type Props = {
   children: React.ReactNode;
 };
 
 export default function DashboardLayout({ children }: Props) {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
   return (
-    <html lang="en">
-      <body style={styles.app}>
-        <Header />
-        <Sidebar />
-        <main style={styles.content}>{children}</main>
-      </body>
-    </html>
+    <div className={styles.app}>
+      <Header onMenuToggle={() => setSidebarOpen(!sidebarOpen)} />
+      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+      {sidebarOpen && <div className={styles.overlay} onClick={() => setSidebarOpen(false)} />}
+      <main className={styles.content}>{children}</main>
+    </div>
   );
 }
 
-const styles: { [k: string]: React.CSSProperties } = {
-  app: {
-    fontFamily:
-      "Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial",
-    color: "#111827",
-    background: "#FBFBFB",
-    minHeight: "100vh",
-  },
-  content: {
-    marginTop: 90,
-    marginLeft: 283,
-    padding: 20,
-    minHeight: "calc(100vh - 90px)",
-  },
-};
+

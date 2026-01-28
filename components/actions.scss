@@ -1,0 +1,31 @@
+.action-wrapper {
+  position: relative;
+  cursor: pointer;
+}
+
+.action-menu {
+  position: absolute;
+  right: 0;
+  top: 25px;
+  width: 170px;
+  background: #ffffff;
+  border-radius: 6px;
+  padding: 10px 0;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  z-index: 100;
+  border: 1px solid #e5e7eb;
+
+  div {
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: #545f7d;
+    cursor: pointer;
+
+    &:hover {
+      background: #f5f7fa;
+    }
+  }
+}

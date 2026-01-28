@@ -44,13 +44,27 @@ table {
     white-space: nowrap;
   }
 
-  th:nth-child(1) { width: 15%; }
-  th:nth-child(2) { width: 15%; }
-  th:nth-child(3) { width: 25%; }
-  th:nth-child(4) { width: 15%; }
-  th:nth-child(5) { width: 15%; }
-  th:nth-child(6) { width: 10%; }
-  th:nth-child(7) { width: 5%; }
+  th:nth-child(1) {
+    width: 15%;
+  }
+  th:nth-child(2) {
+    width: 15%;
+  }
+  th:nth-child(3) {
+    width: 25%;
+  }
+  th:nth-child(2) {
+    width: 10%;
+  }
+  th:nth-child(5) {
+    width: 10%;
+  }
+  th:nth-child(6) {
+    width: 10%;
+  }
+  th:nth-child(7) {
+    width: 5%;
+  }
 
   .th-content {
     display: flex;
@@ -203,51 +217,52 @@ table {
     padding: 16px;
     gap: 24px;
   }
-  
+
   .user-text {
     font-size: 18px;
   }
-  
+
   .stats-grid {
     grid-template-columns: 1fr;
     gap: 16px;
   }
-  
+
   .table-wrapper {
     padding: 12px;
     margin: 0 -4px;
   }
-  
+
   table {
     font-size: 12px;
-    
-    th, td {
+
+    th,
+    td {
       padding: 12px 8px;
       font-size: 11px;
     }
-    
+
     th:first-child,
     td:first-child {
       padding-left: 12px;
     }
-    
+
     th:last-child,
     td:last-child {
       padding-right: 12px;
     }
   }
-  
+
   .pagination-wrapper {
     flex-direction: column;
     align-items: stretch;
     gap: 12px;
   }
-  
+
   .pagination-left,
   .pagination-right {
     justify-content: center;
   }
-  
+
   .pagination-right {
     flex-wrap: wrap;
   }
@@ -257,11 +272,11 @@ table {
   .users-page {
     padding: 12px;
   }
-  
+
   .table-wrapper {
     margin: 0 -8px;
   }
-  
+
   .pagination-right button {
     min-width: 32px;
     height: 32px;

@@ -7,7 +7,8 @@ import { setStorage } from "@/hooks/useLocalStorage";
 import { useRouter } from "next/navigation";
 import "./users.scss";
 import StatsCard from "@/components/StatsCard";
-import { Coins, Users, Wallet2, ListFilter } from "lucide-react";
+import TableHeader from "@/components/TableHeader";
+import { Coins, Users, Wallet2, MoreVertical } from "lucide-react";
 
 const PAGE_SIZE = 10;
 
@@ -63,12 +64,25 @@ export default function UsersPage() {
         <table>
           <thead>
             <tr>
-              <th>Organization <ListFilter size={16} /></th>
-              <th>Username <ListFilter size={16} /></th>
-              <th>Email <ListFilter size={16} /></th>
-              <th>Phone <ListFilter size={16} /></th>
-              <th>Date Joined <ListFilter size={16} /></th>
-              <th>Status <ListFilter size={16} /></th>
+              <th>
+                <TableHeader title="Organization" />
+              </th>
+              <th>
+                <TableHeader title="Username" />
+              </th>
+              <th>
+                <TableHeader title="Email" />
+              </th>
+              <th>
+                <TableHeader title="Phone" />
+              </th>
+              <th>
+                <TableHeader title="Date Joined" />
+              </th>
+              <th>
+                <TableHeader title="Status" />
+              </th>
+              <th></th>
             </tr>
           </thead>
 
@@ -85,24 +99,57 @@ export default function UsersPage() {
                     {user.status}
                   </span>
                 </td>
+                <td>
+                  <MoreVertical size={16} />
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
+      </div>
 
-        {/* Pagination */}
-        <div className="pagination">
-          <button disabled={page === 1} onClick={() => setPage((p) => p - 1)}>
-            Prev
+      {/* Pagination */}
+      <div className="pagination-wrapper">
+        <div className="pagination-left">
+          Showing
+          <select>
+            <option>100</option>
+            <option>50</option>
+            <option>20</option>
+          </select>
+          out of {users.length}
+        </div>
+
+        <div className="pagination-right">
+          <button
+            className="nav"
+            disabled={page === 1}
+            onClick={() => setPage(page - 1)}
+          >
+            ‹
           </button>
 
-          <span>{page}</span>
+          {[1, 2, 3].map((p) => (
+            <button
+              key={p}
+              className={`page ${page === p ? "active" : ""}`}
+              onClick={() => setPage(p)}
+            >
+              {p}
+            </button>
+          ))}
+
+          <span className="dots">…</span>
+
+          <button className="page">15</button>
+          <button className="page">16</button>
 
           <button
+            className="nav"
             disabled={start + PAGE_SIZE >= users.length}
-            onClick={() => setPage((p) => p + 1)}
+            onClick={() => setPage(page + 1)}
           >
-            Next
+            ›
           </button>
         </div>
       </div>

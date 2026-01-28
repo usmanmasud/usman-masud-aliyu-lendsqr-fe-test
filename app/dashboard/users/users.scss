@@ -29,6 +29,7 @@
 table {
   width: 100%;
   border-collapse: collapse;
+  table-layout: fixed;
 
   th {
     text-align: left;
@@ -36,6 +37,14 @@ table {
     text-transform: uppercase;
     color: #545f7d;
     padding: 15px 10px;
+    position: relative;
+    
+    svg {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
   }
 
   td {

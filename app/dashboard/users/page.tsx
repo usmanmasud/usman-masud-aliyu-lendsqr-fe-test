@@ -7,7 +7,7 @@ import { setStorage } from "@/hooks/useLocalStorage";
 import { useRouter } from "next/navigation";
 import "./users.scss";
 import StatsCard from "@/components/StatsCard";
-import { Coins, Users, Wallet2 } from "lucide-react";
+import { Coins, Users, Wallet2, ListFilter } from "lucide-react";
 
 const PAGE_SIZE = 10;
 
@@ -63,12 +63,12 @@ export default function UsersPage() {
         <table>
           <thead>
             <tr>
-              <th>Organization</th>
-              <th>Username</th>
-              <th>Email</th>
-              <th>Phone</th>
-              <th>Date Joined</th>
-              <th>Status</th>
+              <th>Organization <ListFilter size={16} /></th>
+              <th>Username <ListFilter size={16} /></th>
+              <th>Email <ListFilter size={16} /></th>
+              <th>Phone <ListFilter size={16} /></th>
+              <th>Date Joined <ListFilter size={16} /></th>
+              <th>Status <ListFilter size={16} /></th>
             </tr>
           </thead>
 

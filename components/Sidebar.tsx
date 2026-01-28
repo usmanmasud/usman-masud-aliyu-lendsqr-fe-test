@@ -32,34 +32,34 @@ const menu = [
   {
     title: "CUSTOMERS",
     items: [
-      { label: "Users", href: "/users", icon: Users },
-      { label: "Guarantors", href: "/guarantors", icon: UserCheck },
-      { label: "Loans", href: "/loans", icon: Wallet },
-      { label: "Decision Models", href: "/decision-models", icon: GitBranch },
-      { label: "Savings", href: "/savings", icon: PiggyBank },
-      { label: "Loan Requests", href: "/loan-requests", icon: FileText },
-      { label: "Whitelist", href: "/whitelist", icon: BadgeCheck },
-      { label: "Karma", href: "/karma", icon: ShieldCheck },
+      { label: "Users", href: "/dashboard/users", icon: Users },
+      { label: "Guarantors", href: "", icon: UserCheck },
+      { label: "Loans", href: "", icon: Wallet },
+      { label: "Decision Models", href: "", icon: GitBranch },
+      { label: "Savings", href: "", icon: PiggyBank },
+      { label: "Loan Requests", href: "", icon: FileText },
+      { label: "Whitelist", href: "", icon: BadgeCheck },
+      { label: "Karma", href: "", icon: ShieldCheck },
     ],
   },
   {
     title: "BUSINESSES",
     items: [
-      { label: "Organization", href: "/organization", icon: Briefcase },
-      { label: "Loan Products", href: "/loan-products", icon: Package },
+      { label: "Organization", href: "", icon: Briefcase },
+      { label: "Loan Products", href: "", icon: Package },
       {
         label: "Savings Products",
-        href: "/savings-products",
+        href: "",
         icon: CreditCard,
       },
-      { label: "Transactions", href: "/transactions", icon: Repeat },
+      { label: "Transactions", href: "", icon: Repeat },
     ],
   },
   {
     title: "SETTINGS",
     items: [
-      { label: "Preferences", href: "/preferences", icon: Settings },
-      { label: "Audit Logs", href: "/audit-logs", icon: ClipboardList },
+      { label: "Preferences", href: "", icon: Settings },
+      { label: "Audit Logs", href: "", icon: ClipboardList },
     ],
   },
 ];
@@ -68,13 +68,13 @@ export default function Sidebar({ isOpen = true, onClose }: SidebarProps) {
   const pathname = usePathname();
 
   return (
-    <aside className={`${styles.sidebar} ${isOpen ? styles.open : ''}`}>
+    <aside className={`${styles.sidebar} ${isOpen ? styles.open : ""}`}>
       <div className={styles.mobileHeader}>
         <button className={styles.closeBtn} onClick={onClose}>
           <X size={20} />
         </button>
       </div>
-      
+
       {/* Switch Organization */}
       <div className={styles.switchOrg}>
         <Briefcase size={16} />
@@ -83,7 +83,7 @@ export default function Sidebar({ isOpen = true, onClose }: SidebarProps) {
       </div>
 
       {/* Dashboard */}
-      <Link href="/dashboard" className={styles.link}>
+      <Link href="" className={styles.link}>
         <Home size={16} />
         <span>Dashboard</span>
       </Link>

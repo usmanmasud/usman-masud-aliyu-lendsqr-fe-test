@@ -36,7 +36,7 @@ export default function UserDetailsPage() {
           </div>
 
           <div>
-            <h3>{user.username ?? "Grace Effiom"}</h3>
+            <h3>{user.fullName}</h3>
             <p className="muted">LSQF587g90</p>
           </div>
         </div>
@@ -44,15 +44,21 @@ export default function UserDetailsPage() {
         <div className="summary-divider" />
 
         <div className="tier">
-          <p>User’s Tier</p>
-          <div className="stars">⭐ ⭐ ⭐</div>
+          <p>User&apos;s Tier</p>
+          <div className="stars">
+            {Array.from({ length: user.tier }, (_, i) => (
+              <span key={i}>⭐</span>
+            ))}
+          </div>
         </div>
 
         <div className="summary-divider" />
 
         <div className="balance">
-          <h3>₦200,000.00</h3>
-          <p>9912345678 / Providus Bank</p>
+          <h3>₦{user.accountBalance.toLocaleString()}.00</h3>
+          <p>
+            {user.accountNumber} / {user.bankName}
+          </p>
         </div>
       </div>
 
@@ -70,43 +76,43 @@ export default function UserDetailsPage() {
       <div className="card">
         {/* Personal Info */}
         <Section title="Personal Information">
-          <Info label="Full Name" value="Grace Effiom" />
-          <Info
-            label="Phone Number"
-            value={user.phoneNumber ?? "07068079222"}
-          />
+          <Info label="Full Name" value={user.fullName} />
+          <Info label="Phone Number" value={user.phoneNumber} />
           <Info label="Email Address" value={user.email} />
-          <Info label="BVN" value="07068079222" />
-          <Info label="Gender" value="Female" />
-          <Info label="Marital Status" value="Single" />
-          <Info label="Children" value="None" />
-          <Info label="Type of Residence" value="Parent’s Apartment" />
+          <Info label="BVN" value={user.bvn} />
+          <Info label="Gender" value={user.gender} />
+          <Info label="Marital Status" value={user.maritalStatus} />
+          <Info label="Children" value={user.children} />
+          <Info label="Type of Residence" value={user.typeOfResidence} />
         </Section>
 
         {/* Education */}
         <Section title="Education and Employment">
-          <Info label="Level of Education" value="B.Sc" />
-          <Info label="Employment Status" value="Employed" />
-          <Info label="Sector of Employment" value="FinTech" />
-          <Info label="Duration of Employment" value="2 years" />
-          <Info label="Office Email" value="grace@lendsqr.com" />
-          <Info label="Monthly Income" value="₦200,000.00 - ₦400,000.00" />
-          <Info label="Loan Repayment" value="₦40,000" />
+          <Info label="Level of Education" value={user.levelOfEducation} />
+          <Info label="Employment Status" value={user.employmentStatus} />
+          <Info label="Sector of Employment" value={user.sectorOfEmployment} />
+          <Info
+            label="Duration of Employment"
+            value={user.durationOfEmployment}
+          />
+          <Info label="Office Email" value={user.officeEmail} />
+          <Info label="Monthly Income" value={user.monthlyIncome} />
+          <Info label="Loan Repayment" value={user.loanRepayment} />
         </Section>
 
         {/* Socials */}
         <Section title="Socials">
-          <Info label="Twitter" value="@grace_effiom" />
-          <Info label="Facebook" value="Grace Effiom" />
-          <Info label="Instagram" value="@grace_effiom" />
+          <Info label="Twitter" value={user.twitter} />
+          <Info label="Facebook" value={user.facebook} />
+          <Info label="Instagram" value={user.instagram} />
         </Section>
 
         {/* Guarantor */}
         <Section title="Guarantor">
-          <Info label="Full Name" value="Debby Ogana" />
-          <Info label="Phone Number" value="07068079222" />
-          <Info label="Email Address" value="debby@gmail.com" />
-          <Info label="Relationship" value="Sister" />
+          <Info label="Full Name" value={user.guarantor.fullName} />
+          <Info label="Phone Number" value={user.guarantor.phoneNumber} />
+          <Info label="Email Address" value={user.guarantor.email} />
+          <Info label="Relationship" value={user.guarantor.relationship} />
         </Section>
       </div>
     </div>

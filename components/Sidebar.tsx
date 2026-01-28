@@ -21,6 +21,7 @@ import {
   Home,
   ChevronDown,
   X,
+  LogOut,
 } from "lucide-react";
 
 interface SidebarProps {
@@ -94,12 +95,12 @@ export default function Sidebar({ isOpen = true, onClose }: SidebarProps) {
           <div key={section.title}>
             <p className={styles.section}>{section.title}</p>
 
-            {section.items.map(({ icon: Icon, href, label }) => {
+            {section.items.map(({ icon: Icon, href, label }, index) => {
               const active = pathname === href;
 
               return (
                 <Link
-                  key={href}
+                  key={`${section.title}-${index}`}
                   href={href}
                   className={`${styles.link} ${active ? styles.active : ""}`}
                 >
@@ -111,6 +112,12 @@ export default function Sidebar({ isOpen = true, onClose }: SidebarProps) {
           </div>
         ))}
       </nav>
+
+      {/* Logout */}
+      <Link href="/login" className={styles.link}>
+        <LogOut size={16} />
+        <span>Logout</span>
+      </Link>
     </aside>
   );
 }

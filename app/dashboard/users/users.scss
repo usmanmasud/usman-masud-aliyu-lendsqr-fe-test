@@ -5,6 +5,8 @@
   flex-direction: column;
   gap: 35px;
   padding: 30px;
+  background: $bg;
+  font-family: $font;
 }
 
 .user-text {
@@ -22,7 +24,7 @@
 .table-wrapper {
   background: $white;
   padding: 20px;
-  border-radius: 8px;
+  border-radius: $radius;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
   overflow-x: auto;
   position: relative;
@@ -86,11 +88,11 @@ table {
   }
 
   tr {
-    border-bottom: 1px solid #e5e9f2;
+    border-bottom: 1px solid $border;
     cursor: pointer;
 
     &:hover {
-      background: #f9fafc;
+      background: $bg;
     }
   }
 }
@@ -130,7 +132,7 @@ table {
   justify-content: space-between;
   align-items: center;
   font-size: 14px;
-  color: #213f7d;
+  color: $secondary;
   flex-wrap: wrap;
   gap: 16px;
 }
@@ -142,12 +144,12 @@ table {
 
   select {
     padding: 6px 10px;
-    border-radius: 4px;
+    border-radius: $radius;
     font-size: 14px;
     cursor: pointer;
-    background: #213f7d1a;
-    color: #213f7d;
-    border: 1px solid #213f7d1a;
+    background: rgba($secondary, 0.1);
+    color: $secondary;
+    border: 1px solid rgba($secondary, 0.1);
   }
 }
 
@@ -174,7 +176,7 @@ table {
     }
 
     &.nav {
-      background: #f5f7fa;
+      background: $bg;
       font-size: 18px;
       line-height: 0;
     }

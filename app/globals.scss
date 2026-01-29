@@ -1,7 +1,5 @@
-@import "../styles/variables";
-
 :root {
-  --background: $white;
+  --background: #ffffff;
   --foreground: #171717;
 }
 
@@ -21,7 +19,7 @@ body {
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: $font;
+  font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

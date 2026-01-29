@@ -1,7 +1,9 @@
+@import "../../styles/variables";
+
 .app {
-  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  font-family: $font;
   color: #111827;
-  background: #FBFBFB;
+  background: $bg;
   min-height: 100vh;
 }
 

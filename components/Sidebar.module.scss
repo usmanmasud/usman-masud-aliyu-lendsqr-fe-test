@@ -1,9 +1,11 @@
+@import "../styles/variables";
+
 .sidebar {
   width: 283px;
   height: calc(100vh - 90px);
-  background: #fff;
-  border-right: 1px solid #e5e7eb;
-  font-family: "Work Sans", sans-serif;
+  background: $white;
+  border-right: 1px solid $border;
+  font-family: $font;
   position: fixed;
   top: 90px;
   left: 0;
@@ -11,13 +13,11 @@
   padding-top: 20px;
   transition: transform 0.3s ease;
   z-index: 1000;
-}
 
-.sidebar::-webkit-scrollbar {
-  display: none;
-}
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
-.sidebar {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
@@ -34,7 +34,7 @@
   margin-left: auto;
   display: flex;
   align-items: center;
-  color: #545f7d;
+  color: $text-light;
 }
 
 @media (max-width: 768px) {
@@ -44,17 +44,17 @@
     height: 100vh;
     top: 0;
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .sidebar.open {
-    transform: translateX(0);
+    
+    &.open {
+      transform: translateX(0);
+    }
   }
   
   .mobileHeader {
     display: flex;
     justify-content: flex-end;
     padding: 16px 24px;
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: 1px solid $border;
   }
 }
 
@@ -62,7 +62,7 @@
   padding: 24px;
   font-size: 22px;
   font-weight: 700;
-  color: #213f7d;
+  color: $secondary;
 }
 
 .switchOrg {
@@ -71,17 +71,17 @@
   gap: 12px;
   padding: 12px 24px;
   font-size: 14px;
-  color: #213f7d;
+  color: $secondary;
   cursor: pointer;
 
   svg {
     stroke-width: 1.5;
     opacity: 0.9;
   }
-}
 
-.caret {
-  margin-left: auto;
+  .caret {
+    margin-left: auto;
+  }
 }
 
 .section {
@@ -97,7 +97,7 @@
   gap: 12px;
   padding: 12px 24px;
   font-size: 14px;
-  color: #545f7d;
+  color: $text-light;
   text-decoration: none;
 
   svg {
@@ -108,15 +108,15 @@
   &:hover {
     background: #f5f7fa;
   }
-}
 
-.active {
-  background: rgba(57, 205, 204, 0.1);
-  border-left: 3px solid #39cdcc;
-  color: #213f7d;
+  &.active {
+    background: rgba(57, 205, 204, 0.1);
+    border-left: 3px solid $primary;
+    color: $secondary;
 
-  svg {
-    opacity: 1;
-    color: #213f7d;
+    svg {
+      opacity: 1;
+      color: $secondary;
+    }
   }
 }

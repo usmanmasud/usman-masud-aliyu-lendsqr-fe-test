@@ -1,3 +1,5 @@
+@import "../../../../styles/variables";
+
 .details-page {
   padding: 30px;
 }
@@ -5,7 +7,7 @@
 .back-btn {
   background: none;
   border: none;
-  color: #545f7d;
+  color: $text-light;
   font-size: 14px;
   cursor: pointer;
   margin-bottom: 20px;
@@ -18,7 +20,7 @@
   margin-bottom: 30px;
 
   h2 {
-    color: #213f7d;
+    color: $text-dark;
   }
 }
 
@@ -34,20 +36,20 @@
   border-radius: 8px;
   cursor: pointer;
   background: transparent;
-}
 
-.btn.danger {
-  border: 1px solid #e4033b;
-  color: #e4033b;
-}
+  &.danger {
+    border: 1px solid #e4033b;
+    color: #e4033b;
+  }
 
-.btn.primary {
-  border: 1px solid #39cdcc;
-  color: #39cdcc;
+  &.primary {
+    border: 1px solid $primary;
+    color: $primary;
+  }
 }
 
 .card {
-  background: #fff;
+  background: $white;
   border-radius: 8px;
   padding: 30px;
   margin-bottom: 30px;
@@ -57,12 +59,18 @@
   display: flex;
   align-items: center;
   gap: 30px;
-}
 
-.summary-left {
-  display: flex;
-  align-items: center;
-  gap: 20px;
+  &-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  &-divider {
+    width: 1px;
+    height: 60px;
+    background: #e5e9f2;
+  }
 }
 
 .avatar {
@@ -73,32 +81,28 @@
   display: grid;
   place-items: center;
   font-size: 36px;
-  color: #213f7d;
+  color: $text-dark;
 }
 
 .muted {
   font-size: 12px;
-  color: #545f7d;
-}
-
-.summary-divider {
-  width: 1px;
-  height: 60px;
-  background: #e5e9f2;
+  color: $text-light;
 }
 
 .tier p {
   font-size: 12px;
-  color: #545f7d;
+  color: $text-light;
 }
 
-.balance h3 {
-  color: #213f7d;
-}
+.balance {
+  h3 {
+    color: $text-dark;
+  }
 
-.balance p {
-  font-size: 12px;
-  color: #545f7d;
+  p {
+    font-size: 12px;
+    color: $text-light;
+  }
 }
 
 .tabs {
@@ -110,13 +114,13 @@
   span {
     padding-bottom: 10px;
     font-size: 14px;
-    color: #545f7d;
+    color: $text-light;
     cursor: pointer;
-  }
 
-  .active {
-    color: #39cdcc;
-    border-bottom: 2px solid #39cdcc;
+    &.active {
+      color: $primary;
+      border-bottom: 2px solid $primary;
+    }
   }
 }
 
@@ -125,7 +129,7 @@
 
   h4 {
     margin-bottom: 20px;
-    color: #213f7d;
+    color: $text-dark;
   }
 }
 
@@ -135,14 +139,16 @@
   gap: 30px;
 }
 
-.info span {
-  font-size: 12px;
-  color: #545f7d;
-  display: block;
-  margin-bottom: 6px;
-}
+.info {
+  span {
+    font-size: 12px;
+    color: $text-light;
+    display: block;
+    margin-bottom: 6px;
+  }
 
-.info p {
-  font-size: 14px;
-  color: #213f7d;
+  p {
+    font-size: 14px;
+    color: $text-dark;
+  }
 }

@@ -1,5 +1,7 @@
+@import "../styles/variables";
+
 .stats-card {
-  background: #ffffff;
+  background: $white;
   border-radius: 8px;
   padding: 20px 24px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
@@ -21,13 +23,13 @@
   .title {
     font-size: 12px;
     text-transform: uppercase;
-    color: #545f7d;
+    color: $text-light;
     font-weight: 500;
   }
 
   .value {
     font-size: 24px;
     font-weight: 600;
-    color: #213f7d;
+    color: $text-dark;
   }
 }

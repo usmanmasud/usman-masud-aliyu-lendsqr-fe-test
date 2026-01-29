@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import Sidebar from "../../components/Sidebar";
 import Header from "../../components/Header";
-import Navbar from "../../components/Navbar";
 import styles from "./dashboard.module.scss";
 
 type Props = {
@@ -17,10 +16,10 @@ export default function DashboardLayout({ children }: Props) {
     <div className={styles.app}>
       <Header onMenuToggle={() => setSidebarOpen(!sidebarOpen)} />
       <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
-      {sidebarOpen && <div className={styles.overlay} onClick={() => setSidebarOpen(false)} />}
+      {sidebarOpen && (
+        <div className={styles.overlay} onClick={() => setSidebarOpen(false)} />
+      )}
       <main className={styles.content}>{children}</main>
     </div>
   );
 }
-
-
